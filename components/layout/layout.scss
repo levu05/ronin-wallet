@@ -1,0 +1,16 @@
+.c-layout {
+  background-color: #d3d3d3;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  > .ce-layout-content {
+    width: 375px;
+    height: 600px;
+    background-color: #fff;
+    overflow-y: auto;
+    margin: 40px auto;
+    font-family: 'SF Pro Text', sans-serif;
+    color: $color-basic-900;
+  }
+}

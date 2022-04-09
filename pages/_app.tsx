@@ -16,9 +16,9 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         <title>Ronin Wallet</title>
         <meta property='description' content='Ronin Wallet' />
         <link rel='icon' href='/static/images/logo.png' />
-        <link href="/static/fonts/sf-pro-text-bold.ttf"  rel="stylesheet" />
-        <link href="/static/fonts/sf-pro-text-semibold.ttf"  rel="stylesheet" />
-        <link href="/static/fonts/sf-pro-text-regular.ttf"  rel="stylesheet" />
+        <link href='/static/fonts/sf-pro-text-bold.ttf'  rel='stylesheet' />
+        <link href='/static/fonts/sf-pro-text-semibold.ttf'  rel='stylesheet' />
+        <link href='/static/fonts/sf-pro-text-regular.ttf'  rel='stylesheet' />
       </Head>
       <Layout>
         <Component {...pageProps} />

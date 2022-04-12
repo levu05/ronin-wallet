@@ -1,13 +1,16 @@
-import { Currency } from '../../lib';
+import commaNumber from 'comma-number';
+
+import { Currency, IAsset } from '../../lib';
 
 interface IProps {
-  currency: Currency,
-  amount: number,
+  asset: IAsset
   className?: string,
+  defaultCurrency: Currency
   onClick?: () => void
 }
 
-const AssetItem = ({currency, amount, className: classes, onClick}: IProps) => {
+const AssetItem = ({asset, defaultCurrency, className: classes, onClick}: IProps) => {
+  const { currency, amount, value: valueInDefaultCurrency } = asset;
   return(
     <div className={`c-asset ${classes}`} onClick={onClick}>
       <div className='c-asset__logo'>
@@ -15,10 +18,10 @@ const AssetItem = ({currency, amount, className: classes, onClick}: IProps) => {
       </div>
       <div className='c-asset__value'>
         <div className='ce-amount'>
-          {amount} {currency}
+          {commaNumber(amount)} {currency}
         </div>
         <div className='ce-value'>
-          2,103,317 VND
+          {commaNumber(valueInDefaultCurrency)} {defaultCurrency}
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { Layout } from '../components';
+import { Account, Layout } from '../components';
 
 import 'antd/dist/antd.css';
 import '../styles/index.scss';
@@ -20,9 +20,11 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         <link href='/static/fonts/sf-pro-text-semibold.ttf'  rel='stylesheet' />
         <link href='/static/fonts/sf-pro-text-regular.ttf'  rel='stylesheet' />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Account>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Account>
     </>
   );
 }

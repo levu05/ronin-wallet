@@ -1,0 +1,32 @@
+.c-success-modal {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 20px;
+  background-color: $color-ronin-white;
+  border-radius: 16px;
+
+  &__header {
+    text-align: center;
+
+    .ce-title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  &__content {
+    margin-top: 24px;
+  }
+
+  &__footer {
+    margin-top: 24px;
+    .ce-ok-btn {
+      width: 100%;
+    }
+  }
+}

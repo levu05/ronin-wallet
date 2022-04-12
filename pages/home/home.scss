@@ -6,7 +6,7 @@
   background-position: center;
   padding: 20px;
 
-  .ce-header {
+  .ce-page-header {
     display: flex;
     justify-content: space-between;
 
@@ -51,7 +51,7 @@
     border-radius: 16px;
     padding: 18px 20px 20px;
     background-image: $background-ronin-gradient;
-    box-shadow: 0px 12px 20px -4px #C5CEE0;
+    box-shadow: 0px 12px 20px -4px $color-basic-700;
 
     &__header {
       display: flex;
@@ -174,41 +174,9 @@
     &__container {
       margin-top: 12px;
 
-      .ce-asset {
-        width: 100%;
-        background-color: $color-basic-200;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        padding: 12px 20px;
+      .ce-asset-item {
         margin-top: 8px;
-
-        &__logo {
-          width: 32px;
-          height: 32px;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        &__value {
-          margin-left: 16px;
-
-          .ce-quatity {
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 20px;
-          }
-
-          .ce-value {
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 16px;
-            color: $color-basic-600;
-            margin-top: 4px;
-          }
-        }
+        border-radius: 8px;
       }
     }
   }

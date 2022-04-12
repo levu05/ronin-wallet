@@ -19,7 +19,7 @@ const Unlock = () => {
         autoComplete='off'
       >
         <Form.Item name='password' >
-          <Input id='password' placeholder='Enter Password' label='Enter Password'/>
+          <Input type='password' id='password' placeholder='Enter Password' label='Enter Password'/>
         </Form.Item>
 
         <Form.Item className='ce-unlock-form__controls'>

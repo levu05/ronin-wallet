@@ -1,20 +1,52 @@
+@import './asset-select/asset-select.scss';
+
+$size-input-height: 40px;
+
 .c-input {
+  position: relative;
+
   label.c-input__label {
+    display: flex;
+    justify-content: space-between;
     text-transform: uppercase;
     color: $color-basic-500;
     font-size: 10px;
     font-weight: 700;
     padding: 0 8px;
+
+    .ce-extra {
+      color: $color-basic-900;
+    }
   }
 
   &__input {
-    height: 40px;
+    height: $size-input-height;
     border-radius: 8px;
     border: 1px solid $color-basic-700;
     font-size: 14px;
 
     input {
       font-size: 14px;
+    }
+  }
+
+  &--amount {
+    .ce-max-btn {
+      position: absolute;
+      right: 16px;
+      bottom: $size-input-height / 2;
+      transform: translateY(50%);
+      width: 40px;
+      height: 24px;
+      font-family: 'Inter', 'SF Pro Text';
+      font-weight: 700;
+      font-size: 10px;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: $color-basic-500;
+      background-color: $color-basic-200;
+      border-radius: 8px;
     }
   }
 }

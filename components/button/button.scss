@@ -1,15 +1,21 @@
 .c-button {
-  color: #fff;
   border: none;
   height: 40px;
   padding: 0 20px;
   border-radius: 8px;
+  font-weight: 600;
 
   &--primary {
+    color: #fff;
     background: $color-ronin-blue;
 
     &.is-gradient {
       background-image: $background-ronin-gradient;
     }
+  }
+
+  &--secondary {
+    color: $color-ronin-blue;
+    background: $color-basic-200;
   }
 }

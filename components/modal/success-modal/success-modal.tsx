@@ -4,12 +4,12 @@ import Button from '../../button';
 
 interface IProps {
   active: boolean,
-  onClose: () => void,
+  onOK: () => void,
   title: ReactElement | string,
   message: ReactElement | string
 }
 
-const SuccessModal = ({ active, title, message, onClose }: IProps) => {
+const SuccessModal = ({ active, title, message, onOK }: IProps) => {
   if (!active) return <></>
 
   return (
@@ -22,7 +22,7 @@ const SuccessModal = ({ active, title, message, onClose }: IProps) => {
           {message}
         </div>
         <div className='c-success-modal__footer'>
-          <Button className='ce-ok-btn' type='primary' text='OK' onClick={onClose} />
+          <Button className='ce-ok-btn' type='primary' text='OK' onClick={onOK} />
         </div>
       </div>
     </Modal>

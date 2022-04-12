@@ -26,7 +26,6 @@ const AssetSelect = ({ assets, label, id, onChange, value }: IProps) => {
 
   const closeAssetSelectModal = () => {
     setAssetSelectModalOpen(false);
-    console.log('close')
   };
 
   const onSelect = (asset: IAsset) => {
@@ -47,8 +46,9 @@ const AssetSelect = ({ assets, label, id, onChange, value }: IProps) => {
             <div className='ce-currency-logo'><img src={`/static/icons/currency/${currency}.png`}/></div>
             <span className='ce-currency'>{currency}</span>
           </>}
-        <button className='ce-layer-btn'><img src='/static/icons/layers.png' /></button>
+        <button type='button' className='ce-layer-btn'><img src='/static/icons/layers.png' /></button>
       </div>
+
       <AssetSelectModal
         assets={assets}
         active={assetSelectModalOpen}

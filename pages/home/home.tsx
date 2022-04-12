@@ -1,21 +1,19 @@
+import { useContext } from 'react';
+import commaNumber from 'comma-number';
+import Router from 'next/router';
+
 import { AssetItem } from '../../components';
-import { Currency } from '../../lib';
+import { AccountContext } from '../../context';
 
 const Home = () => {
-  const assets = [
-    {
-      currency: Currency.Usd,
-      amount: 1000
-    },
-    {
-      currency: Currency.Eur,
-      amount: 50
-    },
-    {
-      currency: Currency.Yen,
-      amount: 10000
-    }
-  ];
+  AccountContext
+  const { assets = [], accountDetails } = useContext(AccountContext);
+  const { walletNumber, defaultCurrency } = accountDetails || {};
+  const { currency, amount, value } = assets.find(asset => asset.default) || {};
+
+  const goToSendAsset = () => {
+    Router.push('/send')
+  };
 
   return (
     <div className='p-home'>
@@ -32,7 +30,7 @@ const Home = () => {
         <div className='ce-wallet-details__header'>
           <div className='ce-title'>
             <span className='ce-title__name'>My Wallet</span>
-            <span className='ce-title__wallet-number'>(7300 3777 3888 3334)</span>
+            <span className='ce-title__wallet-number'>({walletNumber})</span>
           </div>
           <button className='ce-copy-btn'>
             <img src='/static/icons/copy.png' alt='Copy'/>
@@ -42,10 +40,10 @@ const Home = () => {
         <div className='ce-wallet-details__content'>
           <div className='ce-balance'>
             <div className='ce-balance__usd'>
-              1,000 USD
+              {commaNumber(amount)} {currency}
             </div>
             <div className='ce-balance__vnd'>
-              23,046,000 VND
+              {commaNumber(value)} {defaultCurrency}
             </div>
           </div>
 
@@ -63,7 +61,7 @@ const Home = () => {
           <label>Deposit</label>
         </div>
         <div className='ce-wallet-controls__item'>
-          <button>
+          <button onClick={goToSendAsset}>
             <img src='/static/icons/plane.png'/>
           </button>
           <label>Send</label>
@@ -82,7 +80,7 @@ const Home = () => {
         </h1>
 
         <div className='ce-wallet-assets__container'>
-          {assets.map(({currency, amount}) => <AssetItem className='ce-asset-item' currency={currency} amount={amount} />)}
+          {assets.map((asset, index) => <AssetItem key={`${currency}_${index}`} className='ce-asset-item' asset={asset} defaultCurrency={defaultCurrency} />)}
         </div>
       </div>
     </div>

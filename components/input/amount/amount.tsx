@@ -1,4 +1,4 @@
-import { Input as AntdInput } from 'antd';
+import { InputNumber } from 'antd';
 import { Currency } from '../../../lib/definition/asset';
 
 interface IProps {
@@ -7,9 +7,11 @@ interface IProps {
   label?: string,
   id?: string,
   placeholder?: string,
+  onChange?: (value: number) => void, // Form Item change handler
+  value?: number// Form Item value
 }
 
-const AmountInput = ({ availableAmount, assetType, label, id, placeholder }: IProps) => {
+const AmountInput = ({ availableAmount, assetType, label, id, placeholder, onChange, value }: IProps) => {
   return (
     <div className='c-input c-input--amount'>
       {label &&
@@ -17,15 +19,17 @@ const AmountInput = ({ availableAmount, assetType, label, id, placeholder }: IPr
           {label}
           <span className='ce-extra'>{`Available: ${availableAmount} ${assetType}`}</span>
         </label>}
-      <AntdInput
-        type='number'
+      <InputNumber
         className='c-input__input'
         name={id}
         placeholder={placeholder}
+        value={value}
         max={availableAmount}
+        onChange={onChange}
+        controls={false}
       />
 
-      <button className='ce-max-btn'>Max</button>
+      <button type='button' className='ce-max-btn' onClick={() => onChange(availableAmount)}>Max</button>
     </div>
   )
 };

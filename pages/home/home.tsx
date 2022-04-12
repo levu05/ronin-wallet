@@ -1,7 +1,25 @@
+import { AssetItem } from '../../components';
+import { Currency } from '../../lib';
+
 const Home = () => {
+  const assets = [
+    {
+      currency: Currency.Usd,
+      amount: 1000
+    },
+    {
+      currency: Currency.Eur,
+      amount: 50
+    },
+    {
+      currency: Currency.Yen,
+      amount: 10000
+    }
+  ];
+
   return (
     <div className='p-home'>
-      <div className='ce-header'>
+      <div className='ce-page-header'>
         <div className='ce-wallet-name'>
           Ronin Wallet
         </div>
@@ -64,33 +82,7 @@ const Home = () => {
         </h1>
 
         <div className='ce-wallet-assets__container'>
-          <div className='ce-asset'>
-            <div className='ce-asset__logo'>
-              <img src='/static/icons/euro.png' />
-            </div>
-            <div className='ce-asset__value'>
-              <div className='ce-quatity'>
-                50 EUR
-              </div>
-              <div className='ce-value'>
-                1,531,972 VND
-              </div>
-            </div>
-          </div>
-
-          <div className='ce-asset'>
-            <div className='ce-asset__logo'>
-              <img src='/static/icons/yen.png' />
-            </div>
-            <div className='ce-asset__value'>
-              <div className='ce-quatity'>
-                10,000 YEN
-              </div>
-              <div className='ce-value'>
-                2,103,317 VND
-              </div>
-            </div>
-          </div>
+          {assets.map(({currency, amount}) => <AssetItem className='ce-asset-item' currency={currency} amount={amount} />)}
         </div>
       </div>
     </div>

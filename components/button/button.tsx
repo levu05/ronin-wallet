@@ -1,20 +1,17 @@
 import { ReactElement } from 'react';
 import cx from 'classnames';
 
-type IExtraProps = {
-  [key: string]: number | boolean | string
-}
-
 interface IProps {
   text?: string,
+  children?: ReactElement,
   onClick?: () => void,
   type?: 'primary' | 'secondary',
   gradient?: boolean,
   className?: string,
-  [key: string]: number | boolean | string | Function
+  [key: string]: number | boolean | string | Function | ReactElement
 };
 
-const Button = ({ text, onClick, type = 'secondary', className: classes, gradient = false, ...rest }: IProps): ReactElement => {
+const Button = ({ text, children, onClick, type = 'secondary', className: classes, gradient = false, ...rest }: IProps): ReactElement => {
 
   return (
     <button
@@ -23,6 +20,7 @@ const Button = ({ text, onClick, type = 'secondary', className: classes, gradien
       {...rest}
     >
       {text}
+      {children}
     </button>
   );
 };

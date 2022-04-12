@@ -1,3 +1,4 @@
+// Color
 $color-basic-200: #F7F9FC;
 $color-basic-500: #57627B;
 $color-basic-600: #8F9BB3;
@@ -11,4 +12,9 @@ $color-ronin-white: #fff;
 $color-ronin-blue: #1273EA;
 $color-ronin-blue-light: #1C94F4;
 
+// Background
 $background-ronin-gradient: linear-gradient(256.28deg, $color-ronin-blue-light, $color-ronin-blue);
+
+// Size
+$size-app-width: 357px;
+$size-app-height: 600px;

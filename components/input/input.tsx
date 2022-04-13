@@ -5,10 +5,18 @@ interface IProps {
   label?: string,
   placeholder?: string,
   id?: string,
-  labelExtra?: string
+  labelExtra?: string,
+  [key: string]: any
 }
 
-const Input = ({ type, label, id, placeholder }: IProps) => {
+const Input = ({ type, label, id, placeholder, ...rest }: IProps) => {
+  const inputProps = {
+    type,
+    placeholder,
+    name: id,
+    ...rest
+  };
+
   return (
     <div className='c-input'>
       {label &&
@@ -16,10 +24,8 @@ const Input = ({ type, label, id, placeholder }: IProps) => {
           {label}
         </label>}
       <AntdInput
-        type={type}
         className='c-input__input'
-        name={id}
-        placeholder={placeholder}
+        {...inputProps}
       />
     </div>
   )

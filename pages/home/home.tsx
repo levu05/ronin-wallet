@@ -6,9 +6,9 @@ import { AssetItem } from '../../components';
 import { AccountContext } from '../../context';
 
 const Home = () => {
-  AccountContext
   const { assets = [], accountDetails } = useContext(AccountContext);
   const { walletNumber, defaultCurrency } = accountDetails || {};
+
   const { currency, amount, value } = assets.find(asset => asset.default) || {};
 
   const goToSendAsset = () => {

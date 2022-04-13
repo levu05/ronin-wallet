@@ -9,9 +9,10 @@ interface IProps {
   placeholder?: string,
   onChange?: (value: number) => void, // Form Item change handler
   value?: number// Form Item value
+  [key: string]: any
 }
 
-const AmountInput = ({ availableAmount, assetType, label, id, placeholder, onChange, value }: IProps) => {
+const AmountInput = ({ availableAmount, assetType, label, id, placeholder, onChange, value, ...rest }: IProps) => {
   return (
     <div className='c-input c-input--amount'>
       {label &&
@@ -27,6 +28,7 @@ const AmountInput = ({ availableAmount, assetType, label, id, placeholder, onCha
         max={availableAmount}
         onChange={onChange}
         controls={false}
+        {...rest}
       />
 
       <button type='button' className='ce-max-btn' onClick={() => onChange(availableAmount)}>Max</button>

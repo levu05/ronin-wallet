@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 import { IAccount } from '../lib';
 
-
 const AccountContext = createContext<IAccount>({
   accountDetails: {
     walletNumber: null,

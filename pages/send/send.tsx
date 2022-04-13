@@ -8,11 +8,11 @@ import { AccountContext } from '../../context';
 
 const Send = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const { assets = [], accountDetails = {} } = useContext(AccountContext);
+  const { assets = [], accountDetails } = useContext(AccountContext);
   const [selectedAsset, setSelectedAsset] = useState(assets[0]);
 
   const { currency: selectedAssetCurrency, amount: selectedAssetAmount } = selectedAsset || {};
-  const { walletNumber = '' } = accountDetails;
+  const { walletNumber = '' } = accountDetails || {};
 
   const [form] = Form.useForm();
 
@@ -69,7 +69,7 @@ const Send = () => {
               <div className='ce-from-value-render__value'><span className='ce-wallet-name'>My Wallet</span> ({first4Digits}...{last4Digits})</div>
             </div>
           </Form.Item>
-          <Form.Item name='to'  rules={[{ required: true, message: 'Please input receiving wallet!' }]}>
+          <Form.Item name='to' rules={[{ required: true, message: 'Please input receiving wallet!' }]}>
             <Input
               type='text'
               id='to'

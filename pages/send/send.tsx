@@ -77,7 +77,7 @@ const Send = () => {
             />
           </Form.Item>
 
-          <Form.Item name='asset' onMetaChange={e => console.log({e})}>
+          <Form.Item name='asset'>
             <AssetSelect
               type='number'
               id='asset'
@@ -92,12 +92,11 @@ const Send = () => {
               label='Amount'
               assetType={selectedAssetCurrency}
               availableAmount={selectedAssetAmount}
-
             />
           </Form.Item>
 
           <Form.Item className='ce-send-form__controls'>
-            <Button className='ce-control-item' type='secondary' htmltype='cancel' text='Cancel' />
+            <Button className='ce-control-item' type='secondary' htmltype='button' text='Cancel' onClick={onGoBack}/>
             <Button className='ce-control-item' type='primary' htmltype='submit' text='Send' gradient />
           </Form.Item>
         </Form>

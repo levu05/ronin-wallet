@@ -24,7 +24,7 @@ const Unlock = () => {
         autoComplete='off'
         onFinish={handleUnlock}
       >
-        <Form.Item name='password' >
+        <Form.Item name='password'  rules={[{ required: true, message: 'Please enter password!' }]}>
           <Input type='password' id='password' placeholder='Enter Password' label='Enter Password'/>
         </Form.Item>
 

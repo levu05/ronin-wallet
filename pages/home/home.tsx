@@ -1,11 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import commaNumber from 'comma-number';
 import Router from 'next/router';
+import { Tooltip } from 'antd';
 
 import { AssetItem } from '../../components';
 import { AccountContext } from '../../context';
 
 const Home = () => {
+  const [hasCoppied, setHasCopied] = useState(false);
   const { assets = [], accountDetails } = useContext(AccountContext);
   const { walletNumber, defaultCurrency } = accountDetails || {};
 
@@ -13,6 +15,11 @@ const Home = () => {
 
   const goToSendAsset = () => {
     Router.push('/send')
+  };
+
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(walletNumber);
+    setHasCopied(true);
   };
 
   return (
@@ -32,9 +39,16 @@ const Home = () => {
             <span className='ce-title__name'>My Wallet</span>
             <span className='ce-title__wallet-number'>({walletNumber})</span>
           </div>
-          <button className='ce-copy-btn'>
-            <img src='/static/icons/copy.png' alt='Copy'/>
-          </button>
+          <Tooltip
+            placement='bottom'
+            title={hasCoppied ? 'Copied!' : 'Copy to clipboard'}
+            mouseLeaveDelay={0}
+            onVisibleChange={visible => !visible && setTimeout(() => setHasCopied(false), 100)}
+          >
+            <button className='ce-copy-btn'>
+              <img src='/static/icons/copy.png' alt='Copy' onClick={handleCopyToClipboard}/>
+            </button>
+          </Tooltip>
         </div>
         <div className='ce-wallet-details__devider' />
         <div className='ce-wallet-details__content'>

@@ -54,6 +54,38 @@ $header-height: 56px;
           }
         }
       }
+
+      .ce-from-value-render {
+        &__label {
+          display: flex;
+          justify-content: space-between;
+          text-transform: uppercase;
+          color: $color-basic-500;
+          font-size: 10px;
+          font-weight: 700;
+          padding: 0 8px;
+        }
+
+        &__value {
+          width: 100%;
+          height: $size-input-height;
+          border-radius: 8px;
+          border: 1px solid $color-basic-700;
+          font-size: 14px;
+          font-size: 14px;
+          height: $size-input-height;
+          background-color: $color-basic-300;
+          color: $color-basic-600;
+          display: flex;
+          align-items: center;
+          padding: 0 16px;
+
+          .ce-wallet-name {
+            font-weight: 600;
+            margin-right: 8px;
+          }
+        }
+      }
     }
   }
 }

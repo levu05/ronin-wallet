@@ -1,27 +1,22 @@
 import { Form } from 'antd';
 import Router from 'next/router';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { isEmpty } from 'lodash';
 
 import { AmountInput, AssetSelect, Button, Input, SuccessModal } from '../../components';
-import { Currency } from '../../lib';
+import { AccountContext } from '../../context';
 
 const Send = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const { assets = [], accountDetails = {} } = useContext(AccountContext);
+  const [selectedAsset, setSelectedAsset] = useState(assets[0]);
 
-  const assets = [
-    {
-      currency: Currency.Usd,
-      amount: 1000
-    },
-    {
-      currency: Currency.Eur,
-      amount: 50
-    },
-    {
-      currency: Currency.Yen,
-      amount: 10000
-    }
-  ];
+  const { currency: selectedAssetCurrency, amount: selectedAssetAmount } = selectedAsset || {};
+  const { walletNumber = '' } = accountDetails;
+
+  const [form] = Form.useForm();
+
+  const [first4Digits, , , last4Digits] = walletNumber.split(' ');
 
   const handleSendAsset = (data) => {
     setShowSuccessModal(true);
@@ -34,7 +29,19 @@ const Send = () => {
   const handleFinishSending = () => {
     setShowSuccessModal(false);
     onGoBack()
+  };
+
+  const handleValuesChange = changedValues => {
+    if (!isEmpty(changedValues.asset)) setSelectedAsset(changedValues.asset)
   }
+
+  useEffect(() => {
+    form.setFieldsValue({
+      from: walletNumber,
+      asset: assets[0]
+    });
+    if (assets[0] !== selectedAsset) setSelectedAsset(assets[0]);
+  }, [walletNumber, assets]);
 
   return (
     <div className='p-send'>
@@ -52,15 +59,25 @@ const Send = () => {
           className='ce-send-form'
           autoComplete='off'
           onFinish={handleSendAsset}
+          form={form}
+          onValuesChange={handleValuesChange}
         >
-          <Form.Item name='From' >
-            <Input type='text' id='from' label='from'/>
+          <Form.Item name='from' >
+            {/* <Input type='text' id='from' label='from' disabled/> */}
+            <div className='ce-from-value-render'>
+              <span className='ce-from-value-render__label'>From</span>
+              <div className='ce-from-value-render__value'><span className='ce-wallet-name'>My Wallet</span> ({first4Digits}...{last4Digits})</div>
+            </div>
           </Form.Item>
-          <Form.Item name='to' >
-            <Input type='text' id='to' label='To'/>
+          <Form.Item name='to'  rules={[{ required: true, message: 'Please input receiving wallet!' }]}>
+            <Input
+              type='text'
+              id='to'
+              label='To'
+            />
           </Form.Item>
 
-          <Form.Item name='asset' >
+          <Form.Item name='asset' onMetaChange={e => console.log({e})}>
             <AssetSelect
               type='number'
               id='asset'
@@ -69,12 +86,13 @@ const Send = () => {
             />
           </Form.Item>
 
-          <Form.Item name='amount' >
+          <Form.Item name='amount' rules={[{ required: true, message: 'Please input amount!' }]}>
             <AmountInput
               id='amount'
               label='Amount'
-              assetType={Currency.Eur}
-              availableAmount={50}
+              assetType={selectedAssetCurrency}
+              availableAmount={selectedAssetAmount}
+
             />
           </Form.Item>
 
@@ -90,7 +108,7 @@ const Send = () => {
           title='Successfully sent'
           message={
             <p>
-              Your EUR has been sent! <br/>
+              Your <b>EUR</b> has been sent! <br/>
               Thank you for using our service
             </p>
           }
